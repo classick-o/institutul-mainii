@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "3daistudio": {
+      "type": "http",
+      "url": "https://mcp.3daistudio.com/mcp"
+    }
+  }
+}
