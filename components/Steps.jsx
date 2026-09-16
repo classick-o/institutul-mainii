@@ -11,7 +11,9 @@ import { img } from '@/lib/images';
  * Fotografia nu mai e fundalul textului. Randările sunt aproape albe, iar text
  * alb peste ele cerea o perdea groasă care le stingea; separate, rămân curate.
  *
- * Pe telefon linia se întoarce vertical, pe marginea stângă.
+ * Pe telefon rândul devine carusel: etapele se derulează pe orizontală, una
+ * pe ecran, cu snap. Linia rămâne cea de aici, deci succesiunea se citește
+ * în aceeași direcție în care se dă cu degetul.
  */
 export default function Steps({ steps }) {
   return (

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ui } from '@/lib/ui';
+import Select from './Select';
+import DatePicker from './DatePicker';
 
 /**
  * Formularul de programare.
@@ -170,14 +172,12 @@ export default function BookingForm({ lang }) {
 
       <div className="field">
         <label htmlFor="f-tip">{t.type}</label>
-        <select id="f-tip" name="tip" defaultValue={t.types[0]}>
-          {t.types.map((v) => <option key={v}>{v}</option>)}
-        </select>
+        <Select id="f-tip" name="tip" options={t.types} defaultValue={t.types[0]} />
       </div>
 
       <div className="field">
         <label htmlFor="f-data">{t.date}</label>
-        <input type="date" id="f-data" name="data_pref" />
+        <DatePicker id="f-data" name="data_pref" lang={lang} t={t.calendar} />
       </div>
 
       <div className="field field--full">

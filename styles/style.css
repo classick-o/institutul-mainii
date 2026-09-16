@@ -1169,17 +1169,13 @@ body:has(.hero) .nav:not(.is-stuck) .nav__links.is-open a.nav__cta{ color:#fff; 
 .field--full{ grid-column:1 / -1; }
 .field label{ font-size:.79rem; font-weight:400; letter-spacing:.01em; color:var(--ink-2); padding-left:var(--s-1); }
 .field label i{ font-style:normal; color:var(--blue-500); }
-.field input, .field select, .field textarea{
+.field input, .field textarea{
   width:100%; background:var(--paper); border:1px solid transparent; border-radius:var(--r-sm);
   padding:var(--s-3) var(--s-4); font-size:.95rem; outline:none; resize:none;
   transition:border-color .3s, background .3s, box-shadow .3s;
 }
-.field select{ appearance:none; cursor:pointer; padding-right:var(--s-8);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232840E7' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right 18px center; background-size:11px;
-}
-.field input:hover, .field select:hover, .field textarea:hover{ background:var(--paper-2); }
-.field input:focus, .field select:focus, .field textarea:focus{
+.field input:hover, .field textarea:hover{ background:var(--paper-2); }
+.field input:focus, .field textarea:focus{
   border-color:var(--blue-500); background:var(--white); box-shadow:0 0 0 4px rgba(72,88,199,.1);
 }
 .field__hint{ font-weight:400; color:var(--muted); }
@@ -1187,6 +1183,98 @@ body:has(.hero) .nav:not(.is-stuck) .nav__links.is-open a.nav__cta{ color:#fff; 
 .field [aria-invalid="true"]{ border-color:#E0526F; background:#FDF4F6; }
 .field [aria-invalid="true"]:focus{ box-shadow:0 0 0 4px rgba(224,82,111,.14); }
 .field [aria-invalid="true"]:focus-visible{ outline-color:#E0526F; }
+
+/* ── LISTĂ DERULANTĂ ȘI CALENDAR (Select.jsx, DatePicker.jsx) ──
+   Butonul arată exact ca un câmp de text; panoul care se deschide e din
+   aceeași familie cu cardurile: alb, colțuri mari, umbră moale, fără borduri. */
+.select, .datepick{ position:relative; }
+
+.control{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:var(--s-3);
+  background:var(--paper); border:1px solid transparent; border-radius:var(--r-sm);
+  padding:var(--s-3) var(--s-4); font-size:.95rem; line-height:1.66; color:var(--ink);
+  text-align:left; cursor:pointer; outline:none;
+  transition:border-color .3s, background .3s, box-shadow .3s;
+}
+.control > span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.control:hover{ background:var(--paper-2); }
+.control:focus-visible,
+.is-open > .control{
+  border-color:var(--blue-500); background:var(--white); box-shadow:0 0 0 4px rgba(72,88,199,.1);
+}
+.datepick__trigger.is-empty > span{ color:var(--muted); }
+.control__chev{ width:11px; height:8px; flex:none; color:var(--blue-500); transition:transform .35s var(--e-out); }
+.is-open > .control .control__chev{ transform:rotate(180deg); }
+.control__ico{ width:18px; height:18px; flex:none; color:var(--blue-500); }
+
+.pop{
+  position:absolute; z-index:40; top:calc(100% + var(--s-2)); left:0;
+  background:var(--white); border-radius:var(--r-lg);
+  box-shadow:var(--hair), 0 24px 50px -20px rgba(27,35,79,.32);
+  transform-origin:top center;
+  animation:popIn .28s var(--e-out) both;
+}
+.pop[hidden]{ display:none; }
+@keyframes popIn{ from{ opacity:0; transform:translateY(-6px) scale(.98); } to{ opacity:1; transform:none; } }
+
+/* lista */
+.select__list{ right:0; list-style:none; padding:var(--s-2); }
+.select__opt{
+  display:flex; align-items:center; justify-content:space-between; gap:var(--s-3);
+  padding:var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+  border-radius:var(--r-sm); font-size:.93rem; color:var(--ink-2); cursor:pointer;
+  transition:background .2s, color .2s;
+}
+.select__opt.is-active{ background:var(--paper); color:var(--ink); }
+.select__opt[aria-selected="true"]{ color:var(--blue-600); font-weight:500; }
+.select__check{ width:16px; height:16px; flex:none; color:var(--blue-500); opacity:0; transform:scale(.6); transition:opacity .25s, transform .35s var(--e-out); }
+.select__opt[aria-selected="true"] .select__check{ opacity:1; transform:none; }
+
+/* calendarul */
+.datepick__pop{ left:auto; right:0; width:312px; padding:var(--s-4); }
+.datepick__head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--s-3); }
+.datepick__month{ font-family:var(--display); font-size:.98rem; font-weight:500; letter-spacing:-.012em; color:var(--ink); }
+.datepick__nav{
+  width:34px; height:34px; display:grid; place-items:center; border-radius:50%;
+  color:var(--ink-2); box-shadow:inset 0 0 0 1px rgba(10,16,32,.1);
+  transition:background .25s, color .25s, box-shadow .25s;
+}
+.datepick__nav svg{ width:8px; height:12px; }
+.datepick__nav:hover:not(:disabled){ background:var(--blue-500); color:#fff; box-shadow:none; }
+.datepick__nav:disabled{ opacity:.3; cursor:default; }
+
+.datepick__wd, .datepick__grid{ display:grid; grid-template-columns:repeat(7, 1fr); gap:2px; }
+.datepick__wd{ margin-bottom:var(--s-1); }
+.datepick__wd span{
+  text-align:center; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); padding:var(--s-1) 0;
+}
+.datepick__day{
+  aspect-ratio:1; display:grid; place-items:center; border-radius:50%;
+  font-size:.88rem; color:var(--ink); font-variant-numeric:tabular-nums;
+  transition:background .2s, color .2s, box-shadow .2s;
+}
+.datepick__day:hover:not([aria-disabled]){ background:var(--blue-50); color:var(--blue-600); }
+.datepick__day:focus-visible{ outline:none; box-shadow:inset 0 0 0 1.5px var(--blue-500); }
+.datepick__day.is-outside{ color:var(--muted); opacity:.55; }
+.datepick__day[aria-disabled]{ color:var(--muted); opacity:.35; cursor:default; }
+.datepick__day.is-today:not(.is-selected){ box-shadow:inset 0 0 0 1px var(--blue-300); }
+.datepick__day.is-selected,
+.datepick__day.is-selected:hover{ background:var(--blue-500); color:#fff; font-weight:500; opacity:1; }
+
+.datepick__foot{
+  display:flex; align-items:center; justify-content:space-between; gap:var(--s-3);
+  margin-top:var(--s-3); padding-top:var(--s-3);
+  box-shadow:inset 0 1px 0 rgba(10,16,32,.06);
+}
+.datepick__note{ font-size:.76rem; color:var(--muted); }
+.datepick__clear{ font-size:.8rem; color:var(--blue-500); padding:var(--s-1) var(--s-2); border-radius:var(--r-xs); }
+.datepick__clear:hover{ background:var(--blue-50); }
+
+/* pe telefon câmpul e pe toată lățimea, deci calendarul se întinde cu el */
+@media (max-width:640px){
+  .datepick__pop{ left:0; width:auto; }
+}
 
 .form__note{ grid-column:1/-1; font-size:.79rem; color:var(--muted); text-align:center; }
 .form__ok{
@@ -1490,20 +1578,49 @@ body:has(.hero) .nav:not(.is-stuck) .nav__links.is-open a.nav__cta{ color:#fff; 
   .cond-grid--compact .cond__go i{ font-size:.84rem; }
 
   /* ── etapele ──
-     Fotografia devine miniatură în stânga, lângă durată și titlu. Firul
-     vertical rămâne, deci succesiunea se citește la fel. */
-  .stepc{ padding-bottom:var(--s-7); }
-  .stepc article{
-    display:grid; grid-template-columns:72px 1fr; column-gap:var(--s-4);
-    grid-template-areas:"media rail" "media body";
-    grid-template-rows:auto 1fr;
+     Pe telefon parcursul devine carusel. Stivuite, cele patru etape ocupau
+     aproape patru ecrane, iar ultima ajungea la fel de departe de intro ca
+     secțiunea următoare; pe orizontală, tot parcursul se citește dintr-un gest.
+     Firul vertical se retrage și revine linia din rail, cea de pe desktop:
+     direcția succesiunii redevine direcția în care dai cu degetul.
+
+     Scrollerul iese din gutter cu marginea negativă și și-l pune la loc ca
+     padding, deci atinge marginile ecranului, dar prima etapă rămâne aliniată
+     cu textul de deasupra și a doua se vede pe muchie — semnul că mai urmează. */
+  .steps:has(.stepc){
+    display:flex; grid-template-columns:none;
+    gap:var(--s-4);
+    margin-inline:calc(var(--gut) * -1);
+    padding-inline:var(--gut);
+    overflow-x:auto; overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:var(--gut);
+    scrollbar-width:none;
   }
+  .steps:has(.stepc)::-webkit-scrollbar{ display:none; }
+
+  .stepc{
+    flex:0 0 76%; max-width:19rem;
+    scroll-snap-align:start;
+    padding:0;
+  }
+  /* firul dintre etape nu mai are ce lega */
+  .stepc::before, .stepc:last-child::before{ display:none; }
+
+  /* Etapele intră odată cu secțiunea, nu fiecare la rândul ei: observatorul le
+     vede abia când sunt aduse cu degetul, iar o animație pornită în mijlocul
+     gestului se citește ca o sacadare, nu ca o intrare. */
+  .stepc[data-reveal]{ opacity:1; transform:none; }
+
+  .stepc article{ display:flex; flex-direction:column; height:100%; }
   .stepc__media{
-    grid-area:media; align-self:start;
-    aspect-ratio:1/1; margin:0; border-radius:var(--r-md);
+    align-self:auto; aspect-ratio:4 / 3;
+    margin:0 0 var(--s-5); border-radius:var(--r-xl);
   }
-  .stepc__rail{ grid-area:rail; margin:0 0 var(--s-2); }
-  .stepc__body{ grid-area:body; padding-right:0; }
+  .stepc__rail{ position:relative; order:0; margin:0 0 var(--s-4); }
+  .stepc__rail::before{ display:block; }
+  .stepc__dot{ position:relative; left:auto; top:auto; }
+  .stepc__body{ padding-right:0; }
   .stepc h3{ font-size:1.04rem; }
   .stepc p{ margin-top:var(--s-1); font-size:.86rem; line-height:1.56; }
 
