@@ -3,6 +3,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Chrome from '@/components/Chrome';
 import ActionBar from '@/components/ActionBar';
+import SmoothScroll from '@/components/SmoothScroll';
 import { ui } from '@/lib/ui';
 import { HTML_LANG } from '@/lib/routes';
 
@@ -31,6 +32,7 @@ export default function Shell({ lang, children }) {
         <Footer lang={lang} />
         <ActionBar lang={lang} />
         <Chrome />
+        <SmoothScroll />
       </body>
     </html>
   );

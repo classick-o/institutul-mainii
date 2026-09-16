@@ -141,6 +141,9 @@ html{
   scroll-behavior:smooth;
   scroll-padding-top:var(--nav-h);
 }
+/* Cu Lenis activ (vezi SmoothScroll.jsx), netezirea o face el; `smooth` din CSS
+   s-ar suprapune peste fiecare pas al lui și derularea ar întârzia dublu. */
+html.lenis{ scroll-behavior:auto; }
 body{
   /* `clip`, nu `hidden`: nu creează scroll container (deci sticky-ul din FAQ
      merge) și nu lărgește layout viewport-ul; altfel nav-ul fix ar deveni mai
