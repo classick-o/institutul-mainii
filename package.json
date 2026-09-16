@@ -2,7 +2,7 @@
   "name": "institutul-mainii",
   "version": "1.0.0",
   "private": true,
-  "description": "Institutul Mâinii — site static (Next.js export), pregătit pentru GitHub Pages și Hostico",
+  "description": "Institutul Mâinii, site static (Next.js export), pregătit pentru GitHub Pages și Hostico",
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/postbuild.mjs",

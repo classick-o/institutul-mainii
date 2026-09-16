@@ -12,7 +12,7 @@ import { ui } from '@/lib/ui';
  * să poți trece pe alt serviciu fără să atingi componenta.
  *
  * Pe GitHub Pages, unde PHP nu rulează, `NEXT_PUBLIC_FORM_MODE=demo` face
- * formularul să valideze și să confirme local, cu o notă vizibilă — mai bine
+ * formularul să valideze și să confirme local, cu o notă vizibilă, mai bine
  * decât un buton care pare că trimite și nu trimite nimic.
  *
  * Partea de securitate care ține de client (restul e în PHP):

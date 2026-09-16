@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
  * mobil.
  *
  * Sunt grupate aici pentru că toate depind de layout și trebuie repornite la
- * fiecare schimbare de rută — altfel, după navigare, elementele noi ar rămâne
+ * fiecare schimbare de rută, altfel, după navigare, elementele noi ar rămâne
  * invizibile (`[data-reveal]` pornește cu opacity:0).
  */
 export default function Chrome() {
@@ -32,7 +32,7 @@ export default function Chrome() {
        card ar aștepta după primele șapte și n-ar mai părea o intrare, ci o
        coadă.
 
-       `data-delay` rămâne pentru compozițiile orchestrate anume — deschiderea
+       `data-delay` rămâne pentru compozițiile orchestrate anume: deschiderea
        paginii, unde titlul, subtitlul și butoanele au o ordine gândită. */
     const PAS = 70;
     const PLAFON = 350;

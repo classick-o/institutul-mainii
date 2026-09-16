@@ -83,7 +83,6 @@ export default function Home({ lang }) {
                   key={c.id}
                   data-reveal="card"
                 >
-                  <span className="cond__idx">{c.idx}</span>
                   <h3>{c.title}</h3>
                   <p>{c.short}</p>
                   <span className="cond__go">{t.common.seeDetails} <i>→</i></span>
@@ -105,12 +104,6 @@ export default function Home({ lang }) {
           <p className="intro" data-reveal="lead">{p.proceduresIntro}</p>
 
           <Steps steps={s.steps} />
-
-          <p className="mt-7" data-reveal>
-            <Link href={path('procedures', lang)} className="link-arrow">
-              {p.proceduresLink} <i>→</i>
-            </Link>
-          </p>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 /**
  * Zonă cu fundal continuu: un singur gradient sub mai multe secțiuni.
  *
- * Nu e un wrapper de layout — nu impune lățime, grilă sau spațiere. Singurul
+ * Nu e un wrapper de layout, nu impune lățime, grilă sau spațiere. Singurul
  * lucru pe care îl adaugă e stratul de fundal, ca granița dintre secțiunile
  * dinăuntru să nu mai fie o repornire de culoare. Secțiunile rămân exact ce
  * erau, doar că își pierd fundalul propriu (vezi `.flow > :is(.section,

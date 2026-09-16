@@ -103,7 +103,7 @@ const KEYS = [
   for (const dir of dirs) {
     let failed = false;   // verdictul se dă pe fiecare set separat
     const files = fs.readdirSync(dir).filter(f => /^deco-\d+\.png$/i.test(f)).sort();
-    if (!files.length) { console.log(`\n${dir} — niciun deco-*.png`); continue; }
+    if (!files.length) { console.log(`\n${dir}, niciun deco-*.png`); continue; }
 
     const rows = [];
     for (const f of files) {
@@ -137,11 +137,11 @@ const KEYS = [
       });
     }
     const warmMax = Math.max(...rows.map(r => r.warm));
-    if (warmMax > 1) { failed = true; console.log(`ATENȚIE: pixeli calzi până la ${warmMax}% — paleta e spartă (nu trebuie tonuri calde)`); }
+    if (warmMax > 1) { failed = true; console.log(`ATENȚIE: pixeli calzi până la ${warmMax}%, paleta e spartă (nu trebuie tonuri calde)`); }
 
     console.log('--- outlieri (|z| > 1.8) ---');
     console.log(flags.length ? [...new Set(flags)].join('\n') : '  niciunul');
-    console.log(failed ? 'VERDICT: setul NU e omogen — vezi liniile marcate.' : 'VERDICT: set omogen.');
+    console.log(failed ? 'VERDICT: setul NU e omogen, vezi liniile marcate.' : 'VERDICT: set omogen.');
     verdicts.push({ dir, failed });
   }
 

@@ -2,15 +2,15 @@
  * După `next build` (export static), pune în `out/` fișierele care nu trec
  * prin bundler:
  *
- *   – `.nojekyll`  — GitHub Pages ignoră altfel folderele care încep cu `_`,
+ *   – `.nojekyll`  : GitHub Pages ignoră altfel folderele care încep cu `_`,
  *                    adică exact `_next`, și site-ul rămâne fără CSS și JS;
- *   – `.htaccess`  — regulile de server pentru Hostico;
- *   – `api/`       — endpointul PHP al formularului;
- *   – `robots.txt`, `sitemap.xml` — generate din paginile chiar produse.
+ *   – `.htaccess`  : regulile de server pentru Hostico;
+ *   – `api/`       : endpointul PHP al formularului;
+ *   – `robots.txt`, `sitemap.xml`, generate din paginile chiar produse.
  *
  * Sitemap-ul se construiește citind `out/`, nu harta de rute din cod. Așa nu
  * poate anunța o pagină care n-a fost generată, iar perechile de limbă se iau
- * din `<link rel="alternate">` scrise chiar în pagini — deci sitemap-ul e și o
+ * din `<link rel="alternate">` scrise chiar în pagini, deci sitemap-ul e și o
  * verificare că hreflang-ul a ajuns în HTML.
  */
 import { cp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';

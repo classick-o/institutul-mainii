@@ -1,6 +1,6 @@
 <?php
 /**
- * Institutul Mâinii — primirea formularului de programare.
+ * Institutul Mâinii, primirea formularului de programare.
  *
  * Rulează pe găzduirea Hostico (PHP prin MultiPHP). Nu are nevoie de
  * biblioteci externe și nu scrie datele pacientului pe disc: le trimite pe
@@ -233,13 +233,13 @@ $lines = [
     '',
     'Nume:      ' . $nume,
     'Telefon:   ' . $telefon,
-    'Email:     ' . ($email !== '' ? $email : '—'),
+    'Email:     ' . ($email !== '' ? $email : '-'),
     'Tip:       ' . $tip,
-    'Limba:     ' . ($lang === 'en' ? 'engleză — pacientul așteaptă răspuns în engleză' : 'română'),
-    'Data dorită: ' . ($dataPref !== '' ? $dataPref : '—'),
+    'Limba:     ' . ($lang === 'en' ? 'engleză, pacientul așteaptă răspuns în engleză' : 'română'),
+    'Data dorită: ' . ($dataPref !== '' ? $dataPref : '-'),
     '',
     'Mesaj:',
-    $mesaj !== '' ? $mesaj : '—',
+    $mesaj !== '' ? $mesaj : '-',
     '',
     str_repeat('-', 34),
     'Trimis: ' . date('d.m.Y H:i:s'),
@@ -296,7 +296,7 @@ function smtp_send(array $cfg, string $to, string $subject, string $body, string
 
     $transport = ($s['secure'] === 'ssl') ? 'ssl://' : '';
     $fp = @stream_socket_client($transport . $host . ':' . $port, $errno, $errstr, $timeout);
-    if (!$fp) { error_log('SMTP: conexiune eșuată — ' . $errstr); return false; }
+    if (!$fp) { error_log('SMTP: conexiune eșuată, ' . $errstr); return false; }
     stream_set_timeout($fp, $timeout);
 
     $read = static function ($fp): string {

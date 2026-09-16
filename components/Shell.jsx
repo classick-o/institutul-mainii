@@ -11,8 +11,8 @@ import { HTML_LANG } from '@/lib/routes';
  *
  * Fiecare limbă are propriul layout rădăcină (`app/(ro)` și `app/(en)`), pentru
  * că `<html lang>` se scrie o singură dată, în layoutul rădăcină, iar un
- * subarbore nu îl poate schimba. Alternativa — să-l corectezi din JavaScript
- * după încărcare — ar livra pagina engleză marcată ca română: exact ce citesc
+ * subarbore nu îl poate schimba. Alternativa, să-l corectezi din JavaScript
+ * după încărcare, ar livra pagina engleză marcată ca română: exact ce citesc
  * cititoarele de ecran și motoarele de căutare la prima trecere.
  *
  * Trecerea dintr-o limbă în alta traversează două layouturi rădăcină, deci

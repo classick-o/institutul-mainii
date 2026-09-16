@@ -8,12 +8,12 @@ ambele locuri, cu o singură diferență de configurare.
 | | GitHub Pages | Hostico Start (~1,99 €/lună) |
 |---|---|---|
 | Fișiere statice | da | da |
-| Node.js | nu | **nu** — Hostico dă acces la Node doar pe Business și Reseller |
+| Node.js | nu | **nu**, Hostico dă acces la Node doar pe Business și Reseller |
 | PHP | nu | da, prin MultiPHP |
 
 Nu există server Node în niciunul dintre scenarii, deci `next start` și rutele
 API din Next sunt excluse din start. Formularul, care are nevoie de execuție pe
-server, merge separat, printr-un script PHP — disponibil pe Hostico, indisponibil
+server, merge separat, printr-un script PHP, disponibil pe Hostico, indisponibil
 pe Pages (unde formularul rulează în modul demo).
 
 ---
@@ -30,13 +30,13 @@ Adresa rezultată: `https://<utilizator>.github.io/<nume-repo>/`
 
 Ce face workflow-ul diferit:
 
-- `GITHUB_PAGES=1` și `PAGES_BASE_PATH=/<nume-repo>` — pe Pages site-ul stă
+- `GITHUB_PAGES=1` și `PAGES_BASE_PATH=/<nume-repo>`, pe Pages site-ul stă
   într-un subdirector, deci toate căile primesc prefix. Numele se ia automat din
   repo, nu e scris de mână.
-- `NEXT_PUBLIC_FORM_MODE=demo` — PHP nu rulează pe Pages, deci formularul
+- `NEXT_PUBLIC_FORM_MODE=demo`, PHP nu rulează pe Pages, deci formularul
   validează și confirmă local, cu o notă vizibilă. E preferabil unui buton care
   pare că trimite și nu trimite.
-- `robots.txt` devine `Disallow: /` — previzualizarea nu trebuie să ajungă în
+- `robots.txt` devine `Disallow: /`, previzualizarea nu trebuie să ajungă în
   Google și să concureze cu domeniul real.
 
 Build local identic cu cel de pe Pages (PowerShell):
@@ -87,8 +87,8 @@ securitate.
 
 **cPanel → Email Accounts → Create**, două adrese:
 
-- `programari@institutulmainii.ro` — aici ajung solicitările;
-- `formular@institutulmainii.ro` — de aici pleacă mesajele.
+- `programari@institutulmainii.ro`, aici ajung solicitările;
+- `formular@institutulmainii.ro`, de aici pleacă mesajele.
 
 Expeditorul **trebuie** să fie o adresă de pe domeniu. Dacă pui adresa
 pacientului la `From`, mesajul pică la verificarea SPF și ajunge în spam;
@@ -105,11 +105,11 @@ cp config.example.php config.php
 
 Apoi editează `config.php`:
 
-- `to` — unde ajung solicitările;
-- `from` / `from_name` — adresa de pe domeniu, de la 2.4;
-- `allowed_hosts` — `institutulmainii.ro` și `www.institutulmainii.ro`;
-- `rate_salt` — orice șir lung și aleatoriu (cu el se hashuiesc IP-urile);
-- `rate_dir` — de preferat **în afara** lui `public_html`, de exemplu
+- `to`, unde ajung solicitările;
+- `from` / `from_name`, adresa de pe domeniu, de la 2.4;
+- `allowed_hosts`, `institutulmainii.ro` și `www.institutulmainii.ro`;
+- `rate_salt`, orice șir lung și aleatoriu (cu el se hashuiesc IP-urile);
+- `rate_dir`, de preferat **în afara** lui `public_html`, de exemplu
   `/home/UTILIZATOR/formular-rate`. Creează folderul și dă-i drept de scriere.
 
 `config.php` nu se urcă în git (e în `.gitignore`) și e blocat și din `.htaccess`,
@@ -120,7 +120,7 @@ ca să nu poată fi citit din browser.
 Implicit, `smtp.enabled = false` și mesajele pleacă prin funcția `mail()` a
 serverului (Exim). Merge imediat, fără parole în fișiere.
 
-Dacă mesajele ajung în spam, treci pe SMTP autentificat — varianta recomandată de
+Dacă mesajele ajung în spam, treci pe SMTP autentificat, varianta recomandată de
 Hostico:
 
 ```php
@@ -141,7 +141,7 @@ bifă verde pentru domeniu.
 
 - **cPanel → SSL/TLS Status** → *Run AutoSSL* (Let's Encrypt, inclus).
 - După ce HTTPS funcționează, poți activa HSTS: decomentează linia
-  `Strict-Transport-Security` din `.htaccess`. Nu o activa înainte — dacă ceva nu
+  `Strict-Transport-Security` din `.htaccess`. Nu o activa înainte, dacă ceva nu
   merge pe https, browserele vor refuza să mai deschidă site-ul pe http.
 - Dacă domeniul e înregistrat în altă parte, la registrar se pun nameserverele
   Hostico. Propagarea poate dura până la 24 de ore.
@@ -216,7 +216,7 @@ La capcană și la timpul minim, răspunsul e intenționat **„ok"**: un robot 
 primește eroare încearcă altă variantă, unul care primește succes se oprește.
 
 Dacă apare spam care trece de toate astea, pasul următor e Cloudflare Turnstile
-(gratuit) — se adaugă un câmp de token în formular și o verificare în PHP.
+(gratuit), se adaugă un câmp de token în formular și o verificare în PHP.
 
 ---
 

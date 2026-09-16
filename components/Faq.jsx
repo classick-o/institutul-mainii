@@ -5,7 +5,7 @@ import { useRef } from 'react';
 /**
  * Acordeon pe `<details>` nativ: un singur răspuns deschis.
  *
- * `<details>` face singur deschiderea, tastatura și căutarea în pagină — de
+ * `<details>` face singur deschiderea, tastatura și căutarea în pagină, de
  * aceea nu e un `<div>` cu `onClick`. Singurul lucru care lipsește din
  * comportamentul nativ e exclusivitatea, iar aia se face închizând frații la
  * `toggle`. (`name="..."` pe `<details>` ar face-o din HTML, dar încă nu e

@@ -8,7 +8,7 @@ import { img } from '@/lib/images';
  * Statică, fără nicio animație: o fotografie documentară care se mișcă devine
  * reclamă.
  *
- * Perdeaua e în două straturi — unul vertical, care apasă partea de jos, și
+ * Perdeaua e în două straturi: unul vertical, care apasă partea de jos, și
  * unul orizontal dinspre stânga. Unul singur n-ar fi ajuns: cu doar cel
  * vertical, cuvintele lungi din lead ajung peste zona luminoasă a imaginii,
  * iar contrastul cade sub prag exact la mijlocul rândului.
@@ -17,11 +17,11 @@ import { img } from '@/lib/images';
  * Nimic aici nu e lăsat pe seama browserului, pentru că varianta care era
  * arăta exact ca ce e: un șablon. Titlul rupt de `text-wrap:balance` în rânduri
  * egale, totul pornind de pe aceeași linie din stânga, cifrele în coloane
- * identice — corect în fiecare punct și fără nicio urmă că cineva a hotărât
+ * identice. Corect în fiecare punct și fără nicio urmă că cineva a hotărât
  * ceva. Deci:
  *   · titlul stă pe două trepte, iar ruptura e scrisă în conținut
  *     (`titleLines`), nu calculată din lățimea ferestrei;
- *   · treapta a doua e retrasă — singura abatere de la raftul din stânga, și
+ *   · treapta a doua e retrasă, singura abatere de la raftul din stânga, și
  *     e intenționată. Dacă ar fi două, n-ar mai părea decizie;
  *   · cifrele își iau lățimea din conținut, nu din `1fr`;
  *   · etichetele își păstrează rupturile de rând din fișierul de conținut.

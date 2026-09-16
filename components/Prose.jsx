@@ -4,7 +4,7 @@ import { clinic } from '@/lib/site';
 /**
  * Randează blocurile de proză din fișierele de conținut.
  *
- * Textele conțin substituenți — {legal} {cui} {address} {email} {phone} — în
+ * Textele conțin substituenți ({legal} {cui} {address} {email} {phone}) în
  * loc de linkuri scrise de mână. Motivul e că datele clinicii sunt aceleași în
  * ambele limbi: dacă traducătorul ar copia telefonul în text, o schimbare de
  * număr ar trebui făcută în zeci de locuri, iar una dintre limbi ar rămâne în

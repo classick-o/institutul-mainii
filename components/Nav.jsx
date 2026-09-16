@@ -11,9 +11,8 @@ import Logo from './Logo';
 /**
  * Bara de sus.
  *
- * Comportamentul păstrat din prototip: bara se micșorează la scroll, se ascunde
- * când derulezi în jos și reapare când urci, iar meniul mobil se închide cu
- * Escape sau cu un clic în afara lui.
+ * Bara se micșorează la scroll și rămâne mereu pe ecran; nu se mai ascunde la
+ * derularea în jos. Meniul mobil se închide cu Escape sau cu un clic în afara lui.
  *
  * Comutatorul de limbă nu duce la pornire, ci la aceeași pagină în cealaltă
  * limbă (`counterpart`). Altfel, un vizitator care citește despre tunel carpian
@@ -26,8 +25,6 @@ export default function Nav({ lang }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [stuck, setStuck] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -36,18 +33,14 @@ export default function Nav({ lang }) {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const y = window.scrollY;
-        setStuck(y > 24);
-        // meniul deschis ține bara pe ecran, altfel ar dispărea sub deget
-        setHidden(y > 420 && y > lastY.current + 6 && !open);
-        lastY.current = y;
+        setStuck(window.scrollY > 24);
         ticking = false;
       });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [open]);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -72,7 +65,7 @@ export default function Nav({ lang }) {
   const swap = counterpart(pathname, other);
 
   return (
-    <header className={`nav${stuck ? ' is-stuck' : ''}${hidden ? ' is-hidden' : ''}`} ref={navRef}>
+    <header className={`nav${stuck ? ' is-stuck' : ''}`} ref={navRef}>
       <div className="nav__inner">
         <Link href={path('home', lang)} className="logo"><Logo /></Link>
 
@@ -115,7 +108,9 @@ export default function Nav({ lang }) {
             <span>{clinic.phone}</span>
           </a>
 
-          <Link href={path('booking', lang)} className="btn btn--primary">{t.nav.cta}</Link>
+          <Link href={path('booking', lang)} className="btn btn--primary nav__book">
+            {t.nav.cta} <i className="btn__arrow" aria-hidden="true">→</i>
+          </Link>
 
           <button
             className="nav__burger"

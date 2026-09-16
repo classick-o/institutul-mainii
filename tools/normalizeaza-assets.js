@@ -4,13 +4,13 @@
    Ce face, în ordine, pentru fiecare `assets/img/deco-*.png`:
      1. măsoară obiectul (bounding box, luminanță medie, saturație medie);
      2. îl rescalează în același cadru, ca diagonala lui să fie egală cu
-        mediana setului — și îl centrează;
+        mediana setului, apoi îl centrează;
      3. îl gradează cu `brightness()` până la luminanța mediană a setului;
-     4. îi reduce saturația până la p95-ul median al setului — DOAR în jos.
+     4. îi reduce saturația până la p95-ul median al setului, DOAR în jos.
 
    Regula „doar în jos" e din greșeală proprie: prima versiune ținea saturația
    MEDIE a setului și o creștea unde era mică. Media e dominată de corpul
-   aproape neutru al obiectului, deci multiplicatorul umfla vârful colorat —
+   aproape neutru al obiectului, deci multiplicatorul umfla vârful colorat:
    un accent albastru a urcat de la p95 0.44 la 0.72, adică exact invers decât
    voiam. Acum se ține p95 (vârful, adică accentul) și se taie doar excesul.
    Un obiect al cărui accent e prea PALID nu se poate repara din filtru: se
@@ -133,9 +133,9 @@ const rewrite = ({ dataUrl, m, scale, bright, sat }) => new Promise((res, rej) =
 
   await b.close();
   if (deRegenerat.length) {
-    console.log('\nDE REGENERAT (saturația nu se rezolvă din filtru — cere în prompt');
+    console.log('\nDE REGENERAT (saturația nu se rezolvă din filtru, cere în prompt');
     console.log('proporția accentului: „a single ring covering about 3% of the visible surface"):');
     deRegenerat.forEach(l => console.log('  ' + l));
   }
-  console.log(DRY ? '\n(dry run — nu s-a scris nimic)' : '\nScris. Rulează acum: node tools/coerenta-assets.js');
+  console.log(DRY ? '\n(dry run, nu s-a scris nimic)' : '\nScris. Rulează acum: node tools/coerenta-assets.js');
 })();
