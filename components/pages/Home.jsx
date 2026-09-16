@@ -33,7 +33,7 @@ export default function Home({ lang }) {
 
       <Flow tone="calm">
         {/* ══════════════ MEDICUL ══════════════ */}
-        <section className="section despre">
+        <section className="section despre despre--home">
           <h2 className="sr-only">{p.sections.doctor}</h2>
 
           <div className="wrap">
@@ -75,7 +75,7 @@ export default function Home({ lang }) {
           <div className="wrap">
             <p className="intro" data-reveal="lead">{p.conditionsIntro}</p>
 
-            <div className="cond-grid">
+            <div className="cond-grid cond-grid--compact">
               {s.conditions.map((c, i) => (
                 <Link
                   className={`cond${c.urgent ? ' cond--urgent' : ''}`}

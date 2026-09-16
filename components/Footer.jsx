@@ -36,16 +36,7 @@ export default function Footer({ lang }) {
           <span>
             © {new Date().getFullYear()} {clinic.legal}, CUI {clinic.cui}, {clinic.address}
           </span>
-          <div className="footer__social">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">LinkedIn</a>
-          </div>
         </div>
-      </div>
-
-      <div className="footer__wordmark-wrap" aria-hidden="true">
-        <div className="footer__wordmark">INSTITUTUL&nbsp;MÂINII</div>
       </div>
     </footer>
   );

@@ -69,8 +69,7 @@ export default function Chrome() {
       revealables.forEach((el) => el.classList.add('is-in'));
     }
 
-    /* ── bara de progres și bara de acțiune de pe mobil ── */
-    const bar = document.getElementById('scrollProgress');
+    /* ── bara de acțiune de pe mobil ── */
     const actionbar = document.getElementById('actionbar');
     let ticking = false;
     const onScroll = () => {
@@ -78,8 +77,6 @@ export default function Chrome() {
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        if (bar) bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
         if (actionbar) actionbar.classList.toggle('is-in', y > window.innerHeight * 0.45);
         ticking = false;
       });

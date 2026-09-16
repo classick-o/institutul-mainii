@@ -25,7 +25,6 @@ export default function Shell({ lang, children }) {
     <html lang={HTML_LANG[lang]}>
       <body>
         <a href="#top" className="skip">{t.nav.skip}</a>
-        <div className="scroll-progress" id="scrollProgress"></div>
 
         <Nav lang={lang} />
         <main id="top">{children}</main>
